@@ -5,6 +5,15 @@ module loadable_reg (
     input wire d,
     output reg q
 );
+    mux_behavioral uut(.a(q),.b(d),.sel(load),.y(q_t1));
+    always @(posedge clk) begin
+        if(rst==1'b1) begin
+            q=1'b0;
+        end
+        else begin
+            q<=q_t1;
+        end
+    end
     // Hint: instantiate mux_behavioral to compute the next value of q
     // (hold q if load is low, take d if load is high), then register
     // that value on the clock edge.

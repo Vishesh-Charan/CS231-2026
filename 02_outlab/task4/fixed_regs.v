@@ -9,7 +9,21 @@ module reg_bug1_fixed (
     input wire d,
     output reg q
 );
+reg next_q;
 
+    always @(*) begin
+        if (load)
+            next_q = d;
+        else
+            next_q = q;
+    end
+
+    always @(posedge clk) begin
+        if (rst)
+            q <= 1'b0;
+        else
+            q <= next_q;
+    end
 endmodule
 
 module reg_bug2_fixed (
@@ -19,7 +33,21 @@ module reg_bug2_fixed (
     input wire d,
     output reg q
 );
+reg next_q;
 
+    always @(*) begin
+        if (load)
+            next_q = d;
+        else
+            next_q = q;
+    end
+
+    always @(posedge clk) begin
+        if (rst)
+            q <= 1'b0;
+        else
+            q <= next_q;
+    end
 endmodule
 
 module reg_bug3_fixed (

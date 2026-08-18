@@ -16,5 +16,21 @@ module sat_counter (
     //   - if down=1 and up=0: count decrements, but saturates at 0 (stays
     //     at 0 instead of wrapping to 15)
     //   - if up and down are equal (00 or 11): count holds its value
+    wire [3:0] expected;
+    wire [3:0] num;
+    wire[3:0] sum;
+    assign expected[0]=(up^down) ? 1:0;
+    assign expected[3:1]=3'b000;
+    assign num[3:0]=down? expected[3:0]^4'b1111:expected[3:0];
+    assign sum= count+((down&&count!=4'b0000) ? (num+4'b0001):((up&&count!=4'b1111) ? num:4'b0000));
+    always @(posedge clk ) begin
+        if(rst) begin
+            count<=4'b0000;
+        end
+        else begin
+            count<=sum;
+        end
+    end
+
 
 endmodule

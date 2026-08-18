@@ -6,21 +6,21 @@ For each module in buggy_regs.v, answer:
   (c) What would you observe in simulation or synthesis because of the bug?
 
 reg_bug1:
-(a)
-(b)
-(c)
+(a) It was combinational, but not as intended
+(b) It only works and changes next_q when value of load changes, it does not account in between.
+(c) For some positive edges when it is not the edge of load, the next_q won't pick the q or d of that instant.
 
 reg_bug2:
-(a)
-(b)
-(c)
+(a) It is combinational.
+(b) Does not change next_q when load switches to 0.
+(c) In case there is a change in next_q (different than q) in the circuit when posedge clk was not encountered. On posedge it would change the value of q even if load=0 at that point.
 
 reg_bug3:
-(a)
-(b)
-(c)
+(a) It is combinational.
+(b) It has blocking assignments
+(c) It can cause race conditions in case we use multiple of them.
 
 reg_bug4:
 (a)
-(b)
-(c)
+(b) It can cause race condition in case of both load and reset.
+(c) In this case we would see issue in what value to assign to q. It could get assigned anything.
