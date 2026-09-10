@@ -1,0 +1,190 @@
+$date
+	Tue Sep  1 19:46:45 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_task4 $end
+$var wire 1 ! known_destination $end
+$var wire 2 " egress_port [1:0] $end
+$var parameter 32 # ADDR_WIDTH $end
+$var parameter 32 $ PORT_WIDTH $end
+$var parameter 32 % TABLE_SIZE $end
+$var reg 1 & clk $end
+$var reg 8 ' dst_addr [7:0] $end
+$var reg 1 ( frame_valid $end
+$var reg 2 ) ingress_port [1:0] $end
+$var reg 1 * rst $end
+$var reg 8 + src_addr [7:0] $end
+$var integer 32 , errors [31:0] $end
+$scope module dut $end
+$var wire 1 & clk $end
+$var wire 8 - dst_addr [7:0] $end
+$var wire 1 ( frame_valid $end
+$var wire 2 . ingress_port [1:0] $end
+$var wire 1 * rst $end
+$var wire 8 / src_addr [7:0] $end
+$var parameter 32 0 ADDR_WIDTH $end
+$var parameter 32 1 PORT_WIDTH $end
+$var parameter 32 2 TABLE_SIZE $end
+$var reg 2 3 egress_port [1:0] $end
+$var reg 1 4 handled $end
+$var reg 1 ! known_destination $end
+$var integer 32 5 i [31:0] $end
+$upscope $end
+$scope task check_lookup $end
+$var reg 8 6 addr [7:0] $end
+$var reg 1 7 expected_known $end
+$var reg 2 8 expected_port [1:0] $end
+$var reg 1 9 task_failed $end
+$upscope $end
+$scope task learn $end
+$var reg 8 : addr [7:0] $end
+$var reg 2 ; port [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1000 2
+b10 1
+b1000 0
+b1000 %
+b10 $
+b1000 #
+$end
+#0
+$dumpvars
+bx ;
+bx :
+x9
+bx 8
+x7
+bx 6
+b1000 5
+x4
+b0 3
+b0 /
+b0 .
+b0 -
+b0 ,
+b0 +
+1*
+b0 )
+0(
+b0 '
+0&
+b0 "
+0!
+$end
+#5000
+b1000 5
+1&
+#10000
+b1000 5
+b10101010 '
+b10101010 -
+09
+b0 8
+07
+b10101010 6
+0*
+0&
+#11000
+b10 ;
+b10101010 :
+#15000
+1&
+#20000
+1(
+b10 )
+b10 .
+b10101010 +
+b10101010 /
+0&
+#25000
+b10 "
+b10 3
+1!
+b1000 5
+14
+1&
+#30000
+b10 8
+17
+0(
+0&
+#31000
+b1 ;
+b10111011 :
+#35000
+1&
+#40000
+1(
+b1 )
+b1 .
+b10111011 +
+b10111011 /
+0&
+#45000
+b10 "
+b10 3
+1!
+b1000 5
+14
+1&
+#50000
+b1000 5
+b1 "
+b1 3
+1!
+b10111011 '
+b10111011 -
+b1 8
+b10111011 6
+0(
+0&
+#51000
+b11 ;
+b10101010 :
+#55000
+1&
+#60000
+1(
+b11 )
+b11 .
+b10101010 +
+b10101010 /
+0&
+#65000
+b1 "
+b1 3
+1!
+b1000 5
+14
+1&
+#70000
+b1000 5
+b11 "
+b11 3
+1!
+b10101010 '
+b10101010 -
+b11 8
+b10101010 6
+0(
+0&
+#71000
+b1000 5
+b0 "
+b0 3
+0!
+b11001100 '
+b11001100 -
+b0 8
+07
+b11001100 6
+#72000
