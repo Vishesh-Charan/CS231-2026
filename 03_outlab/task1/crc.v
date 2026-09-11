@@ -130,24 +130,7 @@ module crc_parallel #(
 );
 
     // TODO
-    wire[WIDTH-1:0] crc_ini[0:DATA_WIDTH-1];
-    wire[WIDTH-1:0] crc_outi[0:DATA_WIDTH-1];
-    assign crc_ini[0]=crc_in;
-    genvar i;
-    generate
-        for (i = 0;i<DATA_WIDTH ;i=i+1 ) begin
-            crc_update #(
-        .WIDTH(WIDTH),
-        .POLY(POLY)
-    ) 
-    uu(
-        .crc_in(crc_ini[i]),
-        .data_bit(data[i]),
-        .crc_out(crc_outi[i])
-    );
-        end
-    endgenerate
-    assign crc_out=crc_outi[DATA_WIDTH-1];
+
 endmodule
 
 
