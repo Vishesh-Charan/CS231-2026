@@ -15,7 +15,26 @@ section .text
 
 ; gcd(int64_t a{rdi}, int64_t b{rsi}) -> rax
 gcd:
-
+    mov rax, 0
+    cmp rdi, 0
+    je .az
+    cmp rsi, 0
+    je .bz
+    .loop:
+    cmp rdi, rsi
+    jle .suba
+    sub rdi, rsi
+    jmp gcd
+    .suba:
+    sub rsi, rdi 
+    jmp gcd
+    .az:
+    mov rax, rsi
+    jmp .end
+    .bz:
+    mov rax, rdi
+    jmp .end
+    .end:
     ret
 
 _start:

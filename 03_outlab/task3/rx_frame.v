@@ -19,6 +19,11 @@ module rx_frame (
     
     // Counters and Registers
     // TODO:
+    reg [4:0] nibble_cnt
+    reg[3:0] high_nibble
+    reg[79:0] frame_data
+    reg[7:0] rx_crc_byte
+
     // Some examples to help you out!
     //      reg [4:0] nibble_cnt;   // Counts 0 to 21 (22 nibbles = 11 bytes)
     //      reg [3:0] high_nibble;  // Holds the first half of a byte
@@ -41,10 +46,10 @@ module rx_frame (
     reg [15:0] bit_buf;         // Actual 16 bit buffer
     reg [4:0]  buf_len;         // Marking end of buffer
     // TODO: Derive next byte (decoded), next state of bit_buf, next value of buf_len, and decoded symbol
-    wire [7:0] new_byte      = /* TODO */;
-    wire [15:0] next_bit_buf = /* TODO */;
+    wire [7:0] new_byte      = data_in /* TODO */;
+    wire [15:0] next_bit_buf = data_valid? {bit_buf[7:0],new_byte}:bit_buf /* TODO */;
     wire [4:0]  next_buf_len = /* TODO */;
-    wire [4:0]  sym5         = /* TODO */;
+    wire [4:0]  sym5         = bit_buf[15:12]/* TODO */;
 
     // CRC Engine
     // Helping you out here!

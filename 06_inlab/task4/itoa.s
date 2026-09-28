@@ -8,7 +8,19 @@ section .text
 ; my_atoi(const char* buf{rdi}, size_t len{rsi}) -> uint64_t{rax}
 my_atoi:
     ; TODO: copy your Task 3 solution here
-
+    xor rax, rax
+    .loop:
+    movzx rbx, byte[rdi]
+    cmp rbx, '0'
+    jl .end
+    cmp rbx, '9'
+    jg .end
+    sub rbx, '0'
+    imul rax, 10
+    add rax, rbx
+    inc rdi
+    jmp .loop
+    .end:
     ret
 
 ; ----------------------------------------------------------------------------
@@ -50,6 +62,38 @@ my_itoa:
 _start:
     ; TODO: read two lines from stdin, my_atoi each, add them, my_itoa the sum
     ;       into outbuf, write the digits + a newline to stdout, exit 0.
+    
+    xor rax, rax
+    xor rdi, rdi
+    mov rsi, inbuf
+    mov rdx, 100
+    syscall
+    mov rdi, inbuf
+    mov rsi, 100
+    call my_atoi
+    sub rsp, 8
+    mov [rsp], rax
+    inc rdi
+    mov rsi, 100
+    call my_atoi
+    sub rsp, 8
+    mov [rsp], rax
+    mov rdi, qword[rsp]
+    add rsp, 8
+    add rdi, qword[rsp]
+    add rsp, 8
+    mov rsi, outbuf
+    sub rsp, 8
+    mov [rsp], rsi
+    call my_itoa
+
+
+    mov rsi, [rsp]
+    add rsp, 8
+    mov rdx, rax
+    mov rax, 1
+    mov rdi, 1
+    syscall
 
     mov rax, 60
     xor edi, edi

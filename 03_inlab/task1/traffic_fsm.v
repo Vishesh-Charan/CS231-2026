@@ -32,10 +32,30 @@ module traffic_fsm (
 
     // next-state logic (purely combinational)
     // TODO
-
+    assign next_state=(!current_state==RED)?(current_state+2'b01):2'b00;
     // register updates
     // TODO
+    always @(posedge clk or negedge rst_n) begin
+        if(!rst_n) begin
+            current_state<=2'b00;
+            remaining<=8'd25;
+            ped_request<=1'b0;
+        end
+        else begin
+            if(ped_button) begin
+                ped_request<=1'b1;
+            end
+            remaining<=remaining_next;
+            if(do_transition) begin
+                current_state<=next_state;
+                case(current_state)
+                    GREEN: remaining<=8'b25;
+                    YELLOW
 
+                endcase
+        end
+        end
+    end
 endmodule
 
 

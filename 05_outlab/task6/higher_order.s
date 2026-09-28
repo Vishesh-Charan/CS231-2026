@@ -16,17 +16,35 @@ section .text
 
 ; le(int a{edi}, int b{esi}) -> eax (bool: a <= b)
 le:
-
+    xor eax,eax
+    cmp edi, esi
+    jle .change
+    jmp .end
+    .change:
+    mov eax, 1
+    .end:
     ret
 
 ; ge(int a{edi}, int b{esi}) -> eax (bool: a >= b)
 ge:
-
+    xor eax,eax
+    cmp edi, esi
+    jge .change
+    jmp .end
+    .change:
+    mov eax, 1
+    .end:
     ret
 
 ; is_positive(int x{edi}) -> eax (bool: x > 0)
 is_positive:
-
+    xor eax,eax
+    cmp edi, 0
+    jg .change
+    jmp .end
+    .change:
+    mov eax, 1
+    .end:
     ret
 
 ; is_sorted(int* data{rdi}, size_t count{rsi}, FUNC cmp_func{rdx}) -> eax
